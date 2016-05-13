@@ -9,20 +9,20 @@
                 "children":
                 [
                     {
-                        "caption": "cssrem",
+                        "caption": "rem-unit",
                         "children":
                         [
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/cssrem/cssrem.sublime-settings"
+                                    "file": "${packages}/rem-unit/rem-unit.sublime-settings"
                                 },
                                 "caption": "Settings – Default"
                             },
                             {
                                 "command": "open_file",
                                 "args": {
-                                    "file": "${packages}/User/cssrem.sublime-settings"
+                                    "file": "${packages}/User/rem-unit.sublime-settings"
                                 },
                                 "caption": "Settings – User"
                             },

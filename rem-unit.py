@@ -13,10 +13,10 @@ def plugin_loaded():
 
 def init_settings():
     get_settings()
-    sublime.load_settings('cssrem.sublime-settings').add_on_change('get_settings', get_settings)
+    sublime.load_settings('rem-unit.sublime-settings').add_on_change('get_settings', get_settings)
 
 def get_settings():
-    settings = sublime.load_settings('cssrem.sublime-settings')
+    settings = sublime.load_settings('rem-unit.sublime-settings')
     SETTINGS['fontsize'] = settings.get('fontsize', 16)
     SETTINGS['precision'] = settings.get('precision', 8)
     SETTINGS['exts'] = settings.get('exts', [".css", ".scss", ".less", ".sass", ".styl"])
@@ -32,7 +32,7 @@ class CssRemCommand(sublime_plugin.EventListener):
         return None
 
     def on_query_completions(self, view, prefix, locations):
-        # print('cssrem start {0}, {1}'.format(prefix, locations))
+        # print('rem-unit start {0}, {1}'.format(prefix, locations))
 
         # only works on specific file types
         fileName, fileExtension = os.path.splitext(view.file_name())
@@ -98,7 +98,7 @@ class CssRemCommand(sublime_plugin.EventListener):
             snippets += [(value + 'px -> ' + strRem + '(' + str(get_setting(view, 'fontsize')) + 'px/rem)', strRem)]
             snippets += [(value + 'px -> ' + strRem + '(keep px value)', strRem + commentStr)]
 
-        # print("cssrem: {0}".format(snippets))
+        # print("rem-unit: {0}".format(snippets))
         return snippets
 
 class ReplaceRemCommand(sublime_plugin.TextCommand):
