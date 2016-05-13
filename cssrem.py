@@ -1,3 +1,4 @@
+
 import sublime
 import sublime_plugin
 import re
@@ -19,6 +20,7 @@ def get_settings():
     SETTINGS['fontsize'] = settings.get('fontsize', 16)
     SETTINGS['precision'] = settings.get('precision', 8)
     SETTINGS['exts'] = settings.get('exts', [".css", ".scss", ".less", ".sass", ".styl"])
+    SETTINGS['leadingzero'] = settings.get('leadingzero', False)
 
 def get_setting(view, key):
     return view.settings().get(key, SETTINGS[key]);
@@ -64,30 +66,40 @@ class CssRemCommand(sublime_plugin.EventListener):
                 start = location
 
             remValue = round(float(value) / get_setting(view, 'fontsize'), get_setting(view, 'precision'))
-            intValue = (int)remValue
-            if intValue == remValue
+
+            # remove useless .0
+            intValue = int(remValue)
+            if intValue == remValue:
                 remValue = intValue
 
-            remStr = remValue
-            if intValue !== 0
-                remStr = str(remValue) + 'rem'
+            strRem = str(remValue)
+
+            # remove leadingzero
+            if (get_setting(view, 'leadingzero') == False) and (remValue < 1.0):
+                strRem = strRem[1:]
+
+            # add rem unit unless value = 0
+            if remValue != 0:
+                strRem += 'rem'
+            else:
+                strRem = '0'
 
             # save them for replace fix
-            lastCompletion["value"] = remStr
+            lastCompletion["value"] = strRem
             lastCompletion["region"] = sublime.Region(start, location)
 
             # set completion snippet
-            snippets += [(value + 'px ->rem(' + str(get_setting(view, 'fontsize')) + ')', remStr]
+            snippets += [(value + 'px -> ' + strRem + '(' + str(get_setting(view, 'fontsize')) + ')', strRem)]
 
         # print("cssrem: {0}".format(snippets))
         return snippets
 
 class ReplaceRemCommand(sublime_plugin.TextCommand):
-    def run(self, edit):
+    def run(self, view, args):
         needFix = lastCompletion["needFix"]
         if needFix == True:
             value = lastCompletion["value"]
             region = lastCompletion["region"]
             # print('replace: {0}, {1}'.format(value, region))
-            self.view.replace(edit, region, value)
-            self.view.end_edit(edit)
+            view.replace(region, value)
+            view.end_edit()
