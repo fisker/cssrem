@@ -14,10 +14,17 @@ CSSREM
 * 复制下载的cssrem目录到刚才的packges目录里。
 * 重启Sublime Text。
 
+#### 安装
+* Ctrl+Shift+P 输入 Package Control: Add Repository
+* 添加git地址 https://github.com/fisker/cssrem
+* Ctrl+Shift+P 输入 Package Control: Install Package
+* 搜索 cssrem
+* 重启 Sublime Text
+
 ##### 配置参数
 
 参数配置文件：Sublime Text -> Preferences -> Package Settings -> cssrem
 
-* `px_to_rem` - px转rem的单位比例，默认为40。
-* `max_rem_fraction_length` - px转rem的小数部分的最大长度。默认为6。
-* `available_file_types` - 启用此插件的文件类型。默认为：[".css", ".less", ".sass"]。
+* `fontsize` - px转rem的单位比例，默认为40。
+* `precision` - px转rem的小数部分的最大长度。默认为6。
+* `exts` - 启用此插件的文件类型。默认为：[".css", ".less", ".sass"]。

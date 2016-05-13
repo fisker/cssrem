@@ -16,9 +16,9 @@ def init_settings():
 
 def get_settings():
     settings = sublime.load_settings('cssrem.sublime-settings')
-    SETTINGS['px_to_rem'] = settings.get('px_to_rem', 40)
-    SETTINGS['max_rem_fraction_length'] = settings.get('max_rem_fraction_length', 6)
-    SETTINGS['available_file_types'] = settings.get('available_file_types', ['.css', '.less', '.sass'])
+    SETTINGS['fontsize'] = settings.get('fontsize', 16)
+    SETTINGS['precision'] = settings.get('precision', 8)
+    SETTINGS['exts'] = settings.get('exts', ['.css', '.less', '.sass'])
 
 def get_setting(view, key):
     return view.settings().get(key, SETTINGS[key]);
@@ -34,7 +34,7 @@ class CssRemCommand(sublime_plugin.EventListener):
 
         # only works on specific file types
         fileName, fileExtension = os.path.splitext(view.file_name())
-        if not fileExtension.lower() in get_setting(view, 'available_file_types'):
+        if not fileExtension.lower() in get_setting(view, 'exts'):
             return []
 
         # reset completion match
@@ -48,7 +48,7 @@ class CssRemCommand(sublime_plugin.EventListener):
             lineLocation = view.line(location)
             line = view.substr(sublime.Region(lineLocation.a, location))
             value = match.group(1)
-            
+
             # fix: values like `0.5px`
             segmentStart = line.rfind(" ", 0, location)
             if segmentStart == -1:
@@ -63,14 +63,14 @@ class CssRemCommand(sublime_plugin.EventListener):
             else:
                 start = location
 
-            remValue = round(float(value) / get_setting(view, 'px_to_rem'), get_setting(view, 'max_rem_fraction_length'))
+            remValue = round(float(value) / get_setting(view, 'fontsize'), get_setting(view, 'precision'))
 
             # save them for replace fix
             lastCompletion["value"] = str(remValue) + 'rem'
             lastCompletion["region"] = sublime.Region(start, location)
 
             # set completion snippet
-            snippets += [(value + 'px ->rem(' + str(get_setting(view, 'px_to_rem')) + ')', str(remValue) + 'rem')]
+            snippets += [(value + 'px ->rem(' + str(get_setting(view, 'fontsize')) + ')', str(remValue) + 'rem')]
 
         # print("cssrem: {0}".format(snippets))
         return snippets
