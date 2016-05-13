@@ -88,8 +88,15 @@ class CssRemCommand(sublime_plugin.EventListener):
             lastCompletion["value"] = strRem
             lastCompletion["region"] = sublime.Region(start, location)
 
+            commentStr = '';
+            if (fileExtension.lower() in [".sass", ".scss", ".styl", ".less"]):
+                commentStr = '; // ' + value + 'px';
+            else:
+                commentStr = '/* ' + value + 'px */';
+
             # set completion snippet
-            snippets += [(value + 'px -> ' + strRem + '(' + str(get_setting(view, 'fontsize')) + ')', strRem)]
+            snippets += [(value + 'px -> ' + strRem + '(' + str(get_setting(view, 'fontsize')) + 'px/rem)', strRem)]
+            snippets += [(value + 'px -> ' + strRem + '(keep px value)', strRem + commentStr)]
 
         # print("cssrem: {0}".format(snippets))
         return snippets

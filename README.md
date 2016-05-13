@@ -7,18 +7,19 @@ CSSREM
 
 ![效果演示图](cssrem.gif)
 
+##### 安装
+
+* 下载本项目，比如：git clone https://github.com/flashlizi/cssrem
+* 进入packages目录：Sublime Text -> Preferences -> Browse Packages...
+* 复制下载的cssrem目录到刚才的packges目录里。
+* 重启Sublime Text。
+
 #### 安装
 * Ctrl+Shift+P 输入 Package Control: Add Repository
 * 添加git地址 https://github.com/fisker/cssrem
 * Ctrl+Shift+P 输入 Package Control: Install Package
 * 搜索 cssrem
 * 重启 Sublime Text
-
-#### diff from cssrem
-* 删除多余的小数 1.0rem
-* 删除多余的单位 0.0rem
-* 增加 前导0的选择
-* TODO: 修复小数px的起始替换位置
 
 ##### 配置参数
 
