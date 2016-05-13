@@ -24,5 +24,5 @@ CSSREM
 * `exts` - 启用此插件的文件类型。默认为：[".css", ".less", ".sass"]。
 
 #### thanks to
-original repo https://github.com/flashlizi/cssrem
-thanks to MA with help in python script
+* original repo https://github.com/flashlizi/cssrem
+* thanks to MA with help in python script
