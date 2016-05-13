@@ -31,4 +31,4 @@ rem-unit
 
 #### 感谢
 * CSSREM原作者 https://github.com/flashlizi/cssrem
-* @马海星 对python脚本的帮忙
+* @马海星 对python脚本的帮助
