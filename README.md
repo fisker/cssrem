@@ -17,10 +17,10 @@ rem-unit
 
 参数配置文件：Sublime Text -> Preferences -> Package Settings -> rem-unit
 
-* `fontsize` - px转rem的单位比例，默认为40。
-* `precision` - px转rem的小数部分的最大长度。默认为6。
-* `leadingzero` - 是否保留前导0。
-* `exts` - 启用此插件的文件类型。默认为：[".css", ".less", ".sass"]。
+* `fontsize` - px转rem的单位比例，默认为16。。
+* `precision` - px转rem的小数部分的最大长度，默认为8。
+* `leadingzero` - 是否保留前导0，默认不保留。
+* `exts` - 启用此插件的文件类型。默认为：[".css", ".scss", ".less", ".sass", ".styl"]。
 
 #### thanks to
 * original repo https://github.com/flashlizi/cssrem
