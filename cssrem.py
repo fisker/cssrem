@@ -18,7 +18,7 @@ def get_settings():
     settings = sublime.load_settings('cssrem.sublime-settings')
     SETTINGS['fontsize'] = settings.get('fontsize', 16)
     SETTINGS['precision'] = settings.get('precision', 8)
-    SETTINGS['exts'] = settings.get('exts', ['.css', '.less', '.sass'])
+    SETTINGS['exts'] = settings.get('exts', [".css", ".scss", ".less", ".sass", ".styl"])
 
 def get_setting(view, key):
     return view.settings().get(key, SETTINGS[key]);
@@ -64,13 +64,20 @@ class CssRemCommand(sublime_plugin.EventListener):
                 start = location
 
             remValue = round(float(value) / get_setting(view, 'fontsize'), get_setting(view, 'precision'))
+            intValue = (int)remValue
+            if intValue == remValue
+                remValue = intValue
+
+            remStr = remValue
+            if intValue !== 0
+                remStr = str(remValue) + 'rem'
 
             # save them for replace fix
-            lastCompletion["value"] = str(remValue) + 'rem'
+            lastCompletion["value"] = remStr
             lastCompletion["region"] = sublime.Region(start, location)
 
             # set completion snippet
-            snippets += [(value + 'px ->rem(' + str(get_setting(view, 'fontsize')) + ')', str(remValue) + 'rem')]
+            snippets += [(value + 'px ->rem(' + str(get_setting(view, 'fontsize')) + ')', remStr]
 
         # print("cssrem: {0}".format(snippets))
         return snippets
