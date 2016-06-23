@@ -13,7 +13,12 @@ rem-unit
 #####插件效果：（CSSREM）
 ![效果演示图](cssrem.gif)
 
-#### 安装
+#### 安装(Package Control)
+* Ctrl+Shift+P 输入 Package Control: Install Packag
+* 搜索 rem-unit
+* 重启 Sublime Text
+
+#### 安装(github)
 * Ctrl+Shift+P 输入 Package Control: Add Repository
 * 添加git地址 https://github.com/fisker/rem-unit
 * Ctrl+Shift+P 输入 Package Control: Install Package
