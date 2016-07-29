@@ -92,7 +92,7 @@ class CssRemCommand(sublime_plugin.EventListener):
             if (fileExtension.lower() in [".sass", ".scss", ".styl", ".less"]):
                 commentStr = '; // ' + value + 'px';
             else:
-                commentStr = '/* ' + value + 'px */';
+                commentStr = ';/* ' + value + 'px */';
 
             # set completion snippet
             snippets += [(value + 'px -> ' + strRem + '(' + str(get_setting(view, 'fontsize')) + 'px/rem)', strRem)]
